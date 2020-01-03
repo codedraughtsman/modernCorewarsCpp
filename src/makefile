@@ -23,5 +23,5 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 .PHONY:clean
 clean:
-	rm $(OBJ_FILES)
+	rm $(OBJ_FILES) main
 
