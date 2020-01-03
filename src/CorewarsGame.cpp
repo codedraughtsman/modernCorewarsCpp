@@ -1,5 +1,7 @@
 #include "CorewarsGame.h"
 
+#include "InstructionInterperter.h"
+
 CorewarsGame::CorewarsGame() : 
 	m_numberOfInstructions(10) {
 
@@ -48,18 +50,7 @@ void CorewarsGame::run(uint32_t nTurns, AbstractPrinter &printer) {
 	}
 
 }
-std::vector<Instruction> stringToInstructions(std::string botString){
-	std::vector<Instruction> bot;
-	std::string delimiter = " ";
-	std::string op = botString.substr(0, botString.find(delimiter));
-	std::string A = botString.substr(botString.find(delimiter), 
-						botString.find(","));
-	std::string B = botString.substr( botString.find(","), botString.size());
-	std::cout <<"adding '" << op<< "' '"<< A<< "' '"<<B <<"'"<<std::endl;
-bot.push_back(Instruction(op, A, B ));
 
-	return bot;
-}
 void CorewarsGame::addBot(std::string botString) {
 	std::vector<Instruction> instructions = stringToInstructions(botString);
 	m_bots.push_back(instructions);
