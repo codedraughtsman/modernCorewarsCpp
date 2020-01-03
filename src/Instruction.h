@@ -4,6 +4,11 @@
 #include <string>
 #include <iostream>
 
+#include "Process.h"
+
+//forward declearation to prevent circular dependency.
+class CorewarsGame; 
+
 class Instruction {
 
 	std::string m_op, m_a, m_b;
@@ -14,6 +19,8 @@ public:
 	std::string &op();
 	std::string &a();
 	std::string &b();
+
+	void execute(Process &p, CorewarsGame &game);
 };
 
 std::ostream &operator<<(std::ostream &os, Instruction  &i); 
