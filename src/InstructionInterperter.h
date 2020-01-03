@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "AbstractInstruction.h"
+#include "Instruction.h"
 
-std::vector<AbstractInstruction> stringToInstructions(std::string botString);
+std::vector<Instruction> stringToInstructions(std::string botString);
 
 #endif //__INSTRUCTION_INTERPERTER_H__

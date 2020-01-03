@@ -1,5 +1,8 @@
 #include "MovInstruction.h"
 
+#include "Instruction.h"
+#include "CorewarsGame.h"
+
 MovInstruction::MovInstruction(std::string a, std::string b) : 
 		AbstractInstruction("MOV", a, b) {}
 
@@ -16,7 +19,7 @@ void MovInstruction::execute(Process &p, CorewarsGame &game) {
 	uint32_t fromIndex = game.toIndex(p.index() + aValue);
 	uint32_t toIndex = game.toIndex(p.index() + bValue);
 
-	AbstractInstruction copiedInstruction = game.instruction(fromIndex);
+	Instruction copiedInstruction = game.instruction(fromIndex);
 	
 	game.instruction(toIndex) = copiedInstruction;
 	p.index() = game.toIndex(p.index() + 1);

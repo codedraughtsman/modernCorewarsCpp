@@ -6,7 +6,7 @@
 #include "AbstractInstruction.h"
 #include "Process.h"
 
-#include "CorewarsGame.h"
+class CorewarsGame; //forward decleration to prevent circular dependency.
 
 class MovInstruction : public AbstractInstruction {
 public:
