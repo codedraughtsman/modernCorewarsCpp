@@ -3,6 +3,8 @@
 #include <set>
 #include <sstream>
 
+#include "Instructions.h"
+
 //tokenises the string using the delimiters.
 //if there are more than one delimiter sequentally then
 //it only counts as one.
@@ -34,30 +36,49 @@ std::vector<std::string> tokeniser(std::string s) {
 
 }
 
-#define INVALID_INSTRUCTION "INVALID_INSTRUCTION"
+
 inline std::string atWithDefault(std::vector<std::string> tokens,uint32_t index,
 		 std::string def) {
 	return tokens.size() >=index ? tokens.at(index) : def;
 }
 
-
-Instruction lineToInstruction(std::string line) {
-	std::vector<std::string> tokens = tokeniser(line);
-
-
-	std::string op=atWithDefault(tokens, 0, INVALID_INSTRUCTION),
-		 a = atWithDefault(tokens,1,"0"),
-		 b = atWithDefault(tokens,2,"0");
-	return Instruction(op, a, b);
+std::string toUpper(std::string input) {
+	std::string output;
+	for (char c : input) {
+		output += toupper(c); 
+	}
+	return output;
 }
 
-std::vector<Instruction> stringToInstructions(std::string botString){
-	std::vector<Instruction> botInstructions;
+
+AbstractInstruction lineToInstruction(std::string line) {
+	std::vector<std::string> tokens = tokeniser(line);
+	
+	if (tokens.size() < 3){
+		return InvalidInstruction();
+	}
+
+	std::string op = toUpper(tokens.at(0));	
+	std::string a = tokens.at(1), b = tokens.at(2);
+
+	if (op == "JMP") {
+		return JmpInstruction(a, b);
+	} else if (op == "MOV") {
+		return MovInstruction(a, b);
+	}else if (op == "DAT") {
+		return DatInstruction(a, b);
+	}
+		 
+	return InvalidInstruction();
+}
+
+std::vector<AbstractInstruction> stringToInstructions(std::string botString){
+	std::vector<AbstractInstruction> botInstructions;
 	std::istringstream iss(botString);
 	for (std::string line; std::getline(iss, line); ) {	
-		Instruction instruct = lineToInstruction(line);
+		AbstractInstruction instruct = lineToInstruction(line);
 	
-		if (instruct.op() == INVALID_INSTRUCTION) {
+		if (instruct.op() == "INVALID_INSTRUCTION") {
 			continue;
 		}
 

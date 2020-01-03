@@ -1,6 +1,7 @@
 #include "CorewarsGame.h"
 
 #include "InstructionInterperter.h"
+#include "DatInstruction.h"
 
 CorewarsGame::CorewarsGame() : 
 	m_numberOfInstructions(10) {
@@ -21,39 +22,35 @@ void CorewarsGame::init(void) {
 		<< "  m_bots.size() " << m_bots.size()<< std::endl;
 
 	for ( uint32_t i=0; i< m_numberOfInstructions; i ++) {
+		std::cout << "init for loop " << i <<std::endl;
 		if ( 0== i%botPlacementOffset && botIndex < m_bots.size()) {
-
+			std::cout << "placing bot" <<std::endl;
 			m_processes.push_back(Process(i));
 
-			std::vector<Instruction> bot = m_bots.at(botIndex);
+			std::vector<AbstractInstruction> bot = m_bots.at(botIndex);
 			m_instructions.insert(m_instructions.end(), 
 				bot.begin(), bot.end());
-
+			std::cout << "bot size" <<bot.size() <<std::endl;
 			i+= bot.size() -1;
 			botIndex ++;
 
 			continue;
 		}
-		m_instructions.push_back(Instruction());
+		std::cout<< "adding dat instruction" << std::endl;
+		m_instructions.push_back(DatInstruction());
 	}
+	std::cout << "finished init"<< std::endl;
 }
 
-std::vector<Instruction> &CorewarsGame::instructions() {
+std::vector<AbstractInstruction> &CorewarsGame::instructions() {
 	return m_instructions;
 }
 
-Instruction &CorewarsGame::instruction(int32_t index){
+AbstractInstruction &CorewarsGame::instruction(int32_t index){
 	
 	return m_instructions.at(toIndex(index));
 }
 
-void CorewarsGame::setInstruction(int32_t index, Instruction instruct) {
-	std::cout << "before m_instructions[toIndex(index)]" << m_instructions[toIndex(index)]<< std::endl;
-	std::cout << "setInstruction index "<<index<<" "<<instruct<<std::endl;
-	m_instructions[toIndex(index)] = instruct;
-	std::cout << "check m_instructions[toIndex(index)]" << m_instructions[toIndex(index)]<< std::endl;
-
-}
 
 uint32_t CorewarsGame::toIndex(int32_t index) {
 	index %= m_instructions.size();
@@ -86,6 +83,6 @@ void CorewarsGame::run(uint32_t nTurns, AbstractPrinter &printer) {
 }
 
 void CorewarsGame::addBot(std::string botString) {
-	std::vector<Instruction> instructions = stringToInstructions(botString);
+	std::vector<AbstractInstruction> instructions = stringToInstructions(botString);
 	m_bots.push_back(instructions);
 }
