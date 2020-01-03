@@ -7,7 +7,7 @@
 class Instruction {
 public:
 	std::string op, a, b;
-	Instruction(std::string op = "DAT", std::string a="#33", std::string b="#33");
+	Instruction(std::string op = "DAT", std::string a="0", std::string b="0");
 
 };
 

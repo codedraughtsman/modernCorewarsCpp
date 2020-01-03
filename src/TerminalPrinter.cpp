@@ -4,8 +4,13 @@
 
 #include "Instruction.h"
 
-TerminalPrinter::TerminalPrinter(uint32_t xCharsSize, uint32_t yCharSize) {
+TerminalPrinter::TerminalPrinter(uint32_t xCharsSize, uint32_t yCharSize): 
+	AbstractPrinter() {
 
+}
+
+void TerminalPrinter::message(std::string s) {
+	std::cout << s << std::endl;
 }
 
 void TerminalPrinter::print(CorewarsGame &game) {
