@@ -8,7 +8,7 @@ int main(int argc, char * argv[]) {
 	TerminalPrinter terminal(100, 100);
 	game.setSize(10);
 	game.addBot("mov 0, 1");
-	game.addBot("jmp 0, 1");
+	game.addBot("jmp 20, 5");
 	game.run(10, terminal);
 
 	return 0;
