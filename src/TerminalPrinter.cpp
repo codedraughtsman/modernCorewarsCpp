@@ -16,7 +16,6 @@ void TerminalPrinter::message(std::string s) {
 
 void TerminalPrinter::print(CorewarsGame &game) {
 	for (Instruction inst : game.instructions()) {
-		std::cout<< "printing line" <<std::endl;
 		std::cout << inst << std::endl;
 	}
 }

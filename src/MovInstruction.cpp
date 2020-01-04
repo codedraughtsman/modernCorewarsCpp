@@ -9,7 +9,6 @@ MovInstruction::MovInstruction(std::string a, std::string b) :
 void MovInstruction::execute(Process &p, CorewarsGame &game) {
 	// copies the instruction from the a field to the position specified 
 	// by the y field.s
-	std::cout << "running MOV execute" << std::endl;
 
 	//TODO replace stoi with a function that can handle pointers and bad arguments
 	//better to add an op class that is created when the op is coverted to a string.

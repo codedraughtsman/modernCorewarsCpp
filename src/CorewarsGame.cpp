@@ -36,10 +36,6 @@ void CorewarsGame::init(void) {
 		}
 		m_instructions.push_back(Instruction("DAT"));
 	}
-	std::cout << "init print" << std::endl;
-	for (auto i: m_instructions) {
-		std::cout << i.m_pInstruction << std::endl;
-	}
 }
 
 std::vector<Instruction> &CorewarsGame::instructions() {
