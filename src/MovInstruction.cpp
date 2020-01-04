@@ -3,7 +3,7 @@
 #include "Instruction.h"
 #include "CorewarsGame.h"
 
-MovInstruction::MovInstruction(std::string a, std::string b) : 
+MovInstruction::MovInstruction(Field a, Field b) : 
 		AbstractInstruction("MOV", a, b) {}
 
 void MovInstruction::execute(Process &p, CorewarsGame &game) {
@@ -12,8 +12,8 @@ void MovInstruction::execute(Process &p, CorewarsGame &game) {
 
 	//TODO replace stoi with a function that can handle pointers and bad arguments
 	//better to add an op class that is created when the op is coverted to a string.
-	int32_t aValue = std::stoi(m_a);
-	int32_t bValue = std::stoi(m_b);	
+	int32_t aValue = m_a.toValue();
+	int32_t bValue = m_b.toValue();	
 
 	uint32_t fromIndex = game.toIndex(p.index() + aValue);
 	uint32_t toIndex = game.toIndex(p.index() + bValue);

@@ -2,8 +2,8 @@
 
 #include "CorewarsGame.h"
 
-AbstractInstruction::AbstractInstruction(std::string op, std::string a, 
-		std::string b) :
+AbstractInstruction::AbstractInstruction(std::string op, Field a, 
+		Field b) :
 	m_op(op), m_a(a), m_b(b) {
 
 }
@@ -14,11 +14,11 @@ std::string &AbstractInstruction::op() {
 	return m_op;
 }
 
-std::string &AbstractInstruction::a() {
+Field &AbstractInstruction::a() {
 	return m_a;
 }
 
-std::string &AbstractInstruction::b() {
+Field &AbstractInstruction::b() {
 	return m_b;
 }
 
