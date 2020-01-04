@@ -55,7 +55,7 @@ Instruction lineToInstruction(std::string line) {
 	std::vector<std::string> tokens = tokeniser(line);
 	
 	if (tokens.size() < 3){
-		return Instruction("INVALID_INSTRUCTION");
+		return Instruction(Instruction::INVALID);
 	}
 
 	std::string op = toUpper(tokens.at(0));	
@@ -70,7 +70,7 @@ std::vector<Instruction> stringToInstructions(std::string botString){
 	for (std::string line; std::getline(iss, line); ) {	
 		Instruction instruct = lineToInstruction(line);
 	
-		if (instruct.op() == "INVALID_INSTRUCTION") {
+		if (instruct.is(Instruction::INVALID)) {
 			continue;
 		}
 
