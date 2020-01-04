@@ -61,7 +61,9 @@ Instruction lineToInstruction(std::string line) {
 	std::string op = toUpper(tokens.at(0));	
 	std::string a = tokens.at(1), b = tokens.at(2);
 
-	return Instruction(op, a, b);
+	Instruction t = Instruction(op, a, b);
+	std::cout <<" lineToInstructions " << t << std::endl;
+	return t;
 }
 
 std::vector<Instruction> stringToInstructions(std::string botString){
@@ -73,6 +75,7 @@ std::vector<Instruction> stringToInstructions(std::string botString){
 		if (instruct.is(Instruction::INVALID)) {
 			continue;
 		}
+		std::cout << "stringToInstructions " << instruct <<std::endl;
 
 		botInstructions.push_back(instruct);
 	}
