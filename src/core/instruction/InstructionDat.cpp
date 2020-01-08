@@ -2,9 +2,9 @@
 
 #include "CorewarsGame.h"
 
-DatInstruction::DatInstruction(Field a, Field b) : 
+InstructionDat::InstructionDat(Field a, Field b) : 
 		AbstractInstruction("DAT", a, b) {}
 
-void DatInstruction::execute(Process &p, CorewarsGame &game) {
+void InstructionDat::execute(Process &p, CorewarsGame &game) {
 
 }

@@ -10,9 +10,9 @@
 //forward declearation to prevent circular dependency.
 class CorewarsGame; 
 
-class MovInstruction : public AbstractInstruction {
+class InstructionMov : public AbstractInstruction {
 public:
-	MovInstruction(Field a, Field b);
+	InstructionMov(Field a, Field b);
 
 	virtual void execute(Process &p, CorewarsGame &game);	
 };

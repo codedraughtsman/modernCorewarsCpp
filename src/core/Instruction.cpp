@@ -35,15 +35,15 @@ Instruction::Instruction(const Instruction &inst)
 void Instruction::setData(InstructionType opType, Field a, Field b ) {
 	m_instructionType = opType;	
 	if (opType == JMP) {
-		m_pInstruction = std::make_shared<JmpInstruction>(a, b);
+		m_pInstruction = std::make_shared<InstructionJmp>(a, b);
 	} else if (opType == MOV) {
-		m_pInstruction = std::make_shared<MovInstruction>(a, b);
+		m_pInstruction = std::make_shared<InstructionMov>(a, b);
 	}else if (opType == DAT) {
-		m_pInstruction = std::make_shared<DatInstruction>(a, b);
+		m_pInstruction = std::make_shared<InstructionDat>(a, b);
 	}else if (opType == INVALID) {
-		m_pInstruction = std::make_shared<InvalidInstruction>(a, b);
+		m_pInstruction = std::make_shared<InstructionInvalid>(a, b);
 	} else {
-		m_pInstruction = std::make_shared<InvalidInstruction>(a, b);
+		m_pInstruction = std::make_shared<InstructionInvalid>(a, b);
 		m_instructionType = INVALID;
 	}
 }

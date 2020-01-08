@@ -3,10 +3,10 @@
 #include "Instruction.h"
 #include "CorewarsGame.h"
 
-MovInstruction::MovInstruction(Field a, Field b) : 
+InstructionMov::InstructionMov(Field a, Field b) : 
 		AbstractInstruction("MOV", a, b) {}
 
-void MovInstruction::execute(Process &p, CorewarsGame &game) {
+void InstructionMov::execute(Process &p, CorewarsGame &game) {
 	// copies the instruction from the a field to the position specified 
 	// by the y field.s
 

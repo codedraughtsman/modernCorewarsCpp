@@ -2,9 +2,9 @@
 
 #include "CorewarsGame.h"
 
-JmpInstruction::JmpInstruction(Field a, Field b) : 
+InstructionJmp::InstructionJmp(Field a, Field b) : 
 		AbstractInstruction("JMP", a, b) {}
 
-void JmpInstruction::execute(Process &p, CorewarsGame &game) {
+void InstructionJmp::execute(Process &p, CorewarsGame &game) {
 
 }

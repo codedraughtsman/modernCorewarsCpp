@@ -10,9 +10,9 @@
 //forward declearation to prevent circular dependency.
 class CorewarsGame; 
 
-class JmpInstruction : public AbstractInstruction {
+class InstructionJmp : public AbstractInstruction {
 public:
-	JmpInstruction(Field a, Field b);
+	InstructionJmp(Field a, Field b);
 
 	virtual void execute(Process &p, CorewarsGame &game);	
 };
