@@ -3,13 +3,26 @@
 #include "CorewarsGame.h"
 #include "TerminalPrinter.h"
 
+TerminalPrinter terminal(100, 100);
+
 int main(int argc, char * argv[]) {
 	CorewarsGame game;
-	TerminalPrinter terminal(100, 100);
 	game.setSize(5);
+	game.setTurns(5);
+
 	game.addBot("mov 0, 1");
 	game.addBot("jmp 20, 5");
-	game.run(10, terminal);
+
+	game.init();
+
+	terminal.message("starting game");
+	terminal.print(game);
+	while (!game.ended()) {
+		terminal.message("\n");
+		game.step();
+		terminal.print(game);
+	}
+
 
 	return 0;
 }

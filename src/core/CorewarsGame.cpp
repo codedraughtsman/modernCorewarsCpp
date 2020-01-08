@@ -3,7 +3,8 @@
 #include "InstructionInterperter.h"
 
 CorewarsGame::CorewarsGame() : 
-	m_numberOfInstructions(10) {
+	m_numberOfInstructions(10),
+	m_numberOfTurns(10) {
 
 }
 
@@ -11,9 +12,15 @@ void CorewarsGame::setSize(uint32_t size) {
 	m_numberOfInstructions = size;
 }
 
+void CorewarsGame::setTurns(uint32_t numberOfTurns) {
+	m_numberOfTurns = numberOfTurns;
+}
+
 void CorewarsGame::init(void) {
 	m_instructions.clear();
 	m_processes.clear();
+	m_elapsedTurns = 0;
+	m_activeProcess = 0;
 
 	uint32_t botIndex=0;
 	uint32_t botPlacementOffset = m_numberOfInstructions / m_bots.size();
@@ -37,6 +44,13 @@ void CorewarsGame::init(void) {
 	}
 }
 
+Process &CorewarsGame::getProcessToMove() {
+	Process &p = m_processes.at(m_activeProcess);
+	m_activeProcess = (m_activeProcess +1) % m_processes.size();
+	return p;
+	
+}
+
 std::vector<Instruction> &CorewarsGame::instructions() {
 	return m_instructions;
 }
@@ -57,27 +71,23 @@ uint32_t CorewarsGame::toIndex(int32_t index) {
 	return index;
 }
 
-void CorewarsGame::run(uint32_t nTurns, AbstractPrinter &printer) {	
-	init();
-	printer.message("starting game");
-	printer.print(*this);
-	for (uint32_t i=0; i<nTurns; i++ ) {
-		for (Process &p : m_processes) {
-			std::cout<<std::endl<< "turn: "<<i <<
-				" process index: "<<p.index() <<std::endl;
-			std::cout<<"running "<<m_instructions.at(p.index()) << std::endl;
-			m_instructions.at(p.index()).execute(p, *this);
-			printer.print(*this);
-		/*if (isGameWon()) {
-			printGameWon();
-			return;		*/
-		}
+void CorewarsGame::step() {
+	Process &p = getProcessToMove();
+	m_instructions.at(p.index()).execute(p, *this);
+	m_elapsedTurns ++;
+}
 
+void CorewarsGame::run() {	
+	while (!ended()) {
+		step();
 	}
-
 }
 
 void CorewarsGame::addBot(std::string botString) {
 	std::vector<Instruction> instructions = stringToInstructions(botString);
 	m_bots.push_back(instructions);
+}
+
+bool CorewarsGame::ended(){
+	return m_numberOfTurns <= m_elapsedTurns;
 }
