@@ -1,4 +1,4 @@
-#include "AbstractInstruction.h"
+#include "InstructionAbstract.h"
 
 #include "CorewarsGame.h"
 

@@ -1,9 +1,9 @@
-#ifndef __MOV_INSTRUCTION_H__
-#define __MOV_INSTRUCTION_H__
+#ifndef __INSTRUCTION_MOV_H__
+#define __INSTRUCTION_MOV_H__
 
 #include <string>
 
-#include "AbstractInstruction.h"
+#include "InstructionAbstract.h"
 #include "Process.h"
 #include "Field.h"
 
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //__MOV_INSTRUCTION_H__
+#endif //__INSTRUCTION_MOV_H__

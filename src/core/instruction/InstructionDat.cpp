@@ -1,4 +1,4 @@
-#include "DatInstruction.h"
+#include "InstructionDat.h"
 
 #include "CorewarsGame.h"
 

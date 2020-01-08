@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "Process.h"
-#include "instruction/AbstractInstruction.h"
+#include "instruction/InstructionAbstract.h"
 #include "Field.h"
 
 class CorewarsGame; //forward decleration to prevent circular dependency.

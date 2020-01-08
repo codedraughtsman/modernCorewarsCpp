@@ -1,4 +1,4 @@
-#include "InvalidInstruction.h"
+#include "InstructionInvalid.h"
 
 InvalidInstruction::InvalidInstruction(Field a, Field b) : 
 		AbstractInstruction("INVALID_INSTRUCTION", a, b) {}

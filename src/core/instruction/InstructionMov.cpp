@@ -1,4 +1,4 @@
-#include "MovInstruction.h"
+#include "InstructionMov.h"
 
 #include "Instruction.h"
 #include "CorewarsGame.h"

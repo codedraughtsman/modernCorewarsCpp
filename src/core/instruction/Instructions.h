@@ -1,11 +1,11 @@
 #ifndef __INSTRUCTIONS_H__
 #define __INSTRUCTIONS_H__
 
-#include "AbstractInstruction.h"
-#include "JmpInstruction.h"
-#include "MovInstruction.h"
-#include "DatInstruction.h"
+#include "InstructionAbstract.h"
+#include "InstructionJmp.h"
+#include "InstructionMov.h"
+#include "InstructionDat.h"
 
-#include "InvalidInstruction.h"
+#include "InstructionInvalid.h"
 
 #endif //__INSTRUCTIONS_H__

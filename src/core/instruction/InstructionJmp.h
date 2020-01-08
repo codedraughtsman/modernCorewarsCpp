@@ -1,9 +1,9 @@
-#ifndef __JMP_INSTRUCTION_H__
-#define __JMP_INSTRUCTION_H__
+#ifndef __INSTRUCTION_JMP_H__
+#define __INSTRUCTION_JMP_H__
 
 #include <string>
 
-#include "AbstractInstruction.h"
+#include "InstructionAbstract.h"
 #include "Process.h"
 #include "Field.h"
 
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //__JMP_INSTRUCTION_H__
+#endif //__INSTRUCTION_JMP_H__

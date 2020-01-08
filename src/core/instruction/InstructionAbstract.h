@@ -1,5 +1,5 @@
-#ifndef __ABSTRACT_INSTRUCTION_H__
-#define __ABSTRACT_INSTRUCTION_H__
+#ifndef __INSTRUCTION_ABSTRACT_H__
+#define __INSTRUCTION_ABSTRACT_H__
 
 #include <string>
 #include <iostream>
@@ -26,4 +26,4 @@ public:
 };
 
 std::ostream &operator<<(std::ostream &os, AbstractInstruction  &i); 
-#endif //__ABSTRACT_INSTRUCTION_H__
+#endif //__INSTRUCTION_ABSTRACT_H__

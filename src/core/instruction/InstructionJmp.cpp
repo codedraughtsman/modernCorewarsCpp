@@ -1,4 +1,4 @@
-#include "JmpInstruction.h"
+#include "InstructionJmp.h"
 
 #include "CorewarsGame.h"
 
