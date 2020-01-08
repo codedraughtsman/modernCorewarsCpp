@@ -1,6 +1,6 @@
 #include "Instruction.h"
 
-#include "Instructions.h"
+#include "instruction/Instructions.h"
 
 Instruction::Instruction(std::string opString, std::string aString, 
 		std::string bString) {
