@@ -18,35 +18,31 @@ void CorewarsGame::init(void) {
 
 	uint32_t botIndex=0;
 	uint32_t botPlacementOffset = m_numberOfInstructions / m_bots.size();
-	std::cout <<" botPlacementOffset " << botPlacementOffset 
-		<< "  m_bots.size() " << m_bots.size()<< std::endl;
 
 	for ( uint32_t i=0; i< m_numberOfInstructions; i ++) {
-		std::cout << "init for loop " << i <<std::endl;
+
 		if ( 0== i%botPlacementOffset && botIndex < m_bots.size()) {
-			std::cout << "placing bot" <<std::endl;
+
 			m_processes.push_back(Process(i));
 
-			std::vector<AbstractInstruction> bot = m_bots.at(botIndex);
+			std::vector<Instruction> bot = m_bots.at(botIndex);
 			m_instructions.insert(m_instructions.end(), 
 				bot.begin(), bot.end());
-			std::cout << "bot size" <<bot.size() <<std::endl;
+
 			i+= bot.size() -1;
 			botIndex ++;
 
 			continue;
 		}
-		std::cout<< "adding dat instruction" << std::endl;
-		m_instructions.push_back(DatInstruction());
+		m_instructions.push_back(Instruction("DAT"));
 	}
-	std::cout << "finished init"<< std::endl;
 }
 
-std::vector<AbstractInstruction> &CorewarsGame::instructions() {
+std::vector<Instruction> &CorewarsGame::instructions() {
 	return m_instructions;
 }
 
-AbstractInstruction &CorewarsGame::instruction(int32_t index){
+Instruction &CorewarsGame::instruction(int32_t index){
 	
 	return m_instructions.at(toIndex(index));
 }
@@ -83,6 +79,6 @@ void CorewarsGame::run(uint32_t nTurns, AbstractPrinter &printer) {
 }
 
 void CorewarsGame::addBot(std::string botString) {
-	std::vector<AbstractInstruction> instructions = stringToInstructions(botString);
+	std::vector<Instruction> instructions = stringToInstructions(botString);
 	m_bots.push_back(instructions);
 }

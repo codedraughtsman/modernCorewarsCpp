@@ -1,6 +1,8 @@
 #include "DatInstruction.h"
 
-DatInstruction::DatInstruction(std::string a, std::string b) : 
+#include "CorewarsGame.h"
+
+DatInstruction::DatInstruction(Field a, Field b) : 
 		AbstractInstruction("DAT", a, b) {}
 
 void DatInstruction::execute(Process &p, CorewarsGame &game) {

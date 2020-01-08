@@ -5,12 +5,14 @@
 
 #include "AbstractInstruction.h"
 #include "Process.h"
+#include "Field.h"
 
-#include "CorewarsGame.h"
+//forward declearation to prevent circular dependency.
+class CorewarsGame; 
 
 class MovInstruction : public AbstractInstruction {
 public:
-	MovInstruction(std::string a, std::string b);
+	MovInstruction(Field a, Field b);
 
 	virtual void execute(Process &p, CorewarsGame &game);	
 };

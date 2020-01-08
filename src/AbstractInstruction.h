@@ -5,20 +5,22 @@
 #include <iostream>
 
 #include "Process.h"
+#include "Field.h"
 
 //forward declearation to prevent circular dependency.
 class CorewarsGame; 
 
 class AbstractInstruction {
 protected:
-	std::string m_op, m_a, m_b;
+	std::string m_op;
+	Field m_a, m_b;
 public:
-	AbstractInstruction(std::string op, std::string a, std::string b);
+	AbstractInstruction(std::string op, Field a, Field b);
 	
 	//getters and setters
 	std::string &op();
-	std::string &a();
-	std::string &b();
+	Field &a();
+	Field &b();
 
 	virtual void execute(Process &p, CorewarsGame &game);
 };

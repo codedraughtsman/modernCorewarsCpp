@@ -3,7 +3,7 @@
 #include <set>
 #include <sstream>
 
-#include "Instructions.h"
+#include "Instruction.h"
 
 //tokenises the string using the delimiters.
 //if there are more than one delimiter sequentally then
@@ -51,34 +51,25 @@ std::string toUpper(std::string input) {
 }
 
 
-AbstractInstruction lineToInstruction(std::string line) {
+Instruction lineToInstruction(std::string line) {
 	std::vector<std::string> tokens = tokeniser(line);
 	
 	if (tokens.size() < 3){
-		return InvalidInstruction();
+		return Instruction(Instruction::INVALID);
 	}
 
 	std::string op = toUpper(tokens.at(0));	
 	std::string a = tokens.at(1), b = tokens.at(2);
-
-	if (op == "JMP") {
-		return JmpInstruction(a, b);
-	} else if (op == "MOV") {
-		return MovInstruction(a, b);
-	}else if (op == "DAT") {
-		return DatInstruction(a, b);
-	}
-		 
-	return InvalidInstruction();
+	return Instruction(op, a, b);
 }
 
-std::vector<AbstractInstruction> stringToInstructions(std::string botString){
-	std::vector<AbstractInstruction> botInstructions;
+std::vector<Instruction> stringToInstructions(std::string botString){
+	std::vector<Instruction> botInstructions;
 	std::istringstream iss(botString);
 	for (std::string line; std::getline(iss, line); ) {	
-		AbstractInstruction instruct = lineToInstruction(line);
+		Instruction instruct = lineToInstruction(line);
 	
-		if (instruct.op() == "INVALID_INSTRUCTION") {
+		if (instruct.is(Instruction::INVALID)) {
 			continue;
 		}
 
