@@ -1,7 +1,6 @@
 #include "CorewarsGame.h"
 
 #include "InstructionInterperter.h"
-#include "DatInstruction.h"
 
 CorewarsGame::CorewarsGame() : 
 	m_numberOfInstructions(10) {
