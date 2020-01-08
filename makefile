@@ -22,7 +22,7 @@ INCLUDEPATHS := -I$(SRC_DIR)/core
 $(MAIN_FILE): $(OBJ_FILES) 
 	$(CXX) $(LDFLAGS) -o $@ $^
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(OBJ_DIR_STRUCTURE)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR_STRUCTURE)
 	g++ $(CPPFLAGS) $(CXXFLAGS) $(INCLUDEPATHS) -c  -o $@ $<
 
 $(OBJ_DIR_STRUCTURE):
