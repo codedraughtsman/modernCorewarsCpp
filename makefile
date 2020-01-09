@@ -19,7 +19,7 @@ TESTER_SRC_FILES := $(shell find $(TESTER_DIR) -type f -name '*.cpp')
 TESTER_OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TESTER_SRC_FILES))
 
 
-MAIN_FILE := $(OBJ_DIR)/main
+RUNNER_MAIN_FILE := $(OBJ_DIR)/main
 TEST_MAIN_FILE := $(OBJ_DIR)/testRunner
 
 LDFLAGS :=
@@ -31,7 +31,11 @@ CXXFLAGS = -g -Wall -std=c++14 -D DEBUG
 INCLUDEPATHS := -I$(SRC_DIR)/core
 
 
-$(MAIN_FILE): $(CORE_OBJ_FILES) $(RUNNER_OBJ_FILES)
+.PHONY:all
+all:$(RUNNER_MAIN_FILE) $(TEST_MAIN_FILE)
+	
+
+$(RUNNER_MAIN_FILE): $(CORE_OBJ_FILES) $(RUNNER_OBJ_FILES)
 	$(CXX) $(LDFLAGS) -o $@ $^
 
 $(TEST_MAIN_FILE):$(CORE_OBJ_FILES) $(TESTER_OBJ_FILES)
@@ -50,8 +54,8 @@ clean:
 
 
 .PHONY:run
-run:$(MAIN_FILE)
-	./$(MAIN_FILE)
+run:$(RUNNER_MAIN_FILE)
+	./$(RUNNER_MAIN_FILE)
 
 .PHONY:test
 test:$(TEST_MAIN_FILE)
